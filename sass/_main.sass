@@ -1,0 +1,66 @@
+@import "compass/reset"
+@import "compass/utilities/general/min"
+@import "compass/layout/sticky-footer"
+@import "compass/utilities/sprites"
+@import "compass/css3"
+@import "comments"
+@import "theme"
+@import "helpers"
+
+// $icones-sprite-dimensions: true
+// $icones-spacing: 20px
+// @import "../images/icones/*.png"
+// @include all-icones-sprites
+.icones-sprite
+	+inline-block
+body
+	font: normal 14px 'Dosis', sans-serif
+	color: #404040
+p
+	margin: 5px 0 10px
+strong
+	font-weight: 600
+body, html
+	height: 100%
+	line-height: 22px
+
+#root
+	height: 100%
+	background: black
+
+.wpcf7-response-output
+	display: block
+	margin: 70px 0 0
+	overflow: hidden
+	border: solid 2px #e1dede
+	background: gray
+	color: black
+.wpcf7-validation-errors
+	border-color: red
+	background: red
+	color: white
+.wpcf7-display-none
+	display: none
+input[type="submit"]
+	cursor: pointer
+	-webkit-appearance: none
+a
+	text-decoration: none
+	&:hover
+		text-decoration: underline
+	&.no-decoration:hover
+		text-decoration: none
+html
+	background: white
+body
+	+bg('bg-topo.jpg')
+
+
+a, a:active, p, a:hover, h1, h2, span, li, ul, h2, h3
+	color: gray
+.middle-view
+	width: 970px
+	margin: 0 auto
+	overflow: hidden
+i
+	+inline-block

@@ -1,0 +1,9 @@
+@mixin debug()
+	outline: dashed 1px rgba(252, 192, 16, .7)
+@mixin bg($src, $repeat:no-repeat, $position:center top)
+	background: transparent image-url($src) $repeat $position
+
+@mixin upcase()
+	text-transform: uppercase
+.upcase
+	+upcase
