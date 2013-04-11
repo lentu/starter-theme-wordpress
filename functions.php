@@ -211,6 +211,10 @@ function discover_section(){
   return $pagename;
 }
 
+if (!is_admin()) {
+  add_filter('show_admin_bar', '__return_false');
+}
+
 function get_scripts(){
   #pega automaticamente o js da view
   $pagename = discover_section();

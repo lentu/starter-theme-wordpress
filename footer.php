@@ -19,48 +19,6 @@
 
 <?php get_scripts(); ?>
 
-<!--[if IE 6]>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
-    <style>
-     .chromeFrameInstallDefaultStyle {
-       width: 800px;
-       border: 0px;
-       z-index:10000;
-       top:400px;
-     }
-    </style>
-    <script>
-     window.attachEvent("onload", function() {
-       CFInstall.check({
-         mode: "inline", // the default
-         node: "prompt"
-       });
-     });
-    </script>
-<![endif]-->
-
-  <script type="text/javascript">
-    window.___gcfg = {lang: 'pt-BR'};
-
-    (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
-  </script>
-
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-  <!--  facebook -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=261547217237282";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-
-
+<?php wp_footer(); ?>
 </body>
 </html>

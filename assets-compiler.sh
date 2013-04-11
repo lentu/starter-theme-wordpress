@@ -201,7 +201,7 @@ newwin() {
 # newtab -G /path/to/someScript
 
 
-newtab sass --compass --watch sass:css --no-cache
+newtab -G sass --compass --watch sass:css --no-cache
 newtab -G coffee -wcbo js/ coffee/
 
 
