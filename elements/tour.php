@@ -12,14 +12,14 @@
 		Abrindo imagem em lightbox
 		<a class="fancybox fancybox.iframe" href="<?php bloginfo('template_directory'); ?>/images/teste-lightbox.jpg" rel="fancybox">
 			<?php #IMAGEM ESCALONADA SOMENTE PARA FINS DE DEMONSTRACAO ?>
-			<img src="<?php bloginfo('template_directory'); ?>/images/teste-lightbox.jpg" alt="" width="150">
+			<img id="thumb" src="<?php bloginfo('template_directory'); ?>/images/teste-lightbox.jpg" alt="" width="150">
 		</a>
 	</div>
 	
 	<br>
 	<br>
 	<br>
-	<div class="compass-example">
+	<div class="compass-example compass-sprites">
 		Exemplos de sprites
 		<span class="icones-search"></span>
 		<span class="icones-mkt-virtual"></span>

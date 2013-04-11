@@ -25,17 +25,24 @@
 				background: green
 				color: white
 				+scale(1.2)
-		&:nth-child(7)
-			background: black
-			color: white
-			.icones-search, .icones-mkt-virtual
-				// ativa animação na troca de estilos do elemento
-				+transition-property(all)
-				+transition-duration(.4s)
-				cursor: pointer
-			.icones-search:hover
-				+translateY(-10px)
-	
+		#thumb
+			+transition-property(all)
+			+transition-duration(.4s)
+			+transition-timing-function(ease-out)
+			image-rendering: crisp-edges
+			&:hover
+				+simple-transform(1.2, -2deg, 3px, 4px, -13deg)
+	div.compass-sprites
+		background: black
+		color: white
+		.icones-search, .icones-mkt-virtual
+			// ativa animação na troca de estilos do elemento
+			+transition-property(all)
+			+transition-duration(.4s)
+			+transition-timing-function(ease-out)
+		.icones-search:hover
+			+translateY(-10px)
+
 	// lista zebrada
 	ul
 		margin-top: 30px

@@ -264,25 +264,48 @@ i {
         -ms-transform: scale(1.2, 1.2);
         -o-transform: scale(1.2, 1.2);
         transform: scale(1.2, 1.2); }
-    #tour div.compass-example:nth-child(7) {
-      background: black;
-      color: white; }
-      #tour div.compass-example:nth-child(7) .icones-search, #tour div.compass-example:nth-child(7) .icones-mkt-virtual {
-        -webkit-transition-property: all;
-        -moz-transition-property: all;
-        -o-transition-property: all;
-        transition-property: all;
-        -webkit-transition-duration: 0.4s;
-        -moz-transition-duration: 0.4s;
-        -o-transition-duration: 0.4s;
-        transition-duration: 0.4s;
-        cursor: pointer; }
-      #tour div.compass-example:nth-child(7) .icones-search:hover {
-        -webkit-transform: translateY(-10px);
-        -moz-transform: translateY(-10px);
-        -ms-transform: translateY(-10px);
-        -o-transform: translateY(-10px);
-        transform: translateY(-10px); }
+    #tour div.compass-example #thumb {
+      -webkit-transition-property: all;
+      -moz-transition-property: all;
+      -o-transition-property: all;
+      transition-property: all;
+      -webkit-transition-duration: 0.4s;
+      -moz-transition-duration: 0.4s;
+      -o-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+      -webkit-transition-timing-function: ease-out;
+      -moz-transition-timing-function: ease-out;
+      -o-transition-timing-function: ease-out;
+      transition-timing-function: ease-out;
+      image-rendering: crisp-edges; }
+      #tour div.compass-example #thumb:hover {
+        -webkit-transform:  scale(1.2, 1.2) rotateZ(-2deg) translate(3px, 4px) skewX(-13deg);
+        -moz-transform:  scale(1.2, 1.2) rotateZ(-2deg) translate(3px, 4px) skewX(-13deg);
+        -ms-transform:  scale(1.2, 1.2) rotateZ(-2deg) translate(3px, 4px) skewX(-13deg);
+        -o-transform:  scale(1.2, 1.2) rotateZ(-2deg) translate(3px, 4px) skewX(-13deg);
+        transform:  scale(1.2, 1.2) rotateZ(-2deg) translate(3px, 4px) skewX(-13deg); }
+  #tour div.compass-sprites {
+    background: black;
+    color: white; }
+    #tour div.compass-sprites .icones-search, #tour div.compass-sprites .icones-mkt-virtual {
+      -webkit-transition-property: all;
+      -moz-transition-property: all;
+      -o-transition-property: all;
+      transition-property: all;
+      -webkit-transition-duration: 0.4s;
+      -moz-transition-duration: 0.4s;
+      -o-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+      -webkit-transition-timing-function: ease-out;
+      -moz-transition-timing-function: ease-out;
+      -o-transition-timing-function: ease-out;
+      transition-timing-function: ease-out; }
+    #tour div.compass-sprites .icones-search:hover {
+      -webkit-transform: translateY(-10px);
+      -moz-transform: translateY(-10px);
+      -ms-transform: translateY(-10px);
+      -o-transform: translateY(-10px);
+      transform: translateY(-10px); }
   #tour ul {
     margin-top: 30px; }
     #tour ul li {
