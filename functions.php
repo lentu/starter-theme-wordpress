@@ -206,17 +206,43 @@ function discover_section(){
 if (!is_admin()) {
   add_filter('show_admin_bar', '__return_false');
 }
-function create_table_mailing () {
+
+
+
+function create_table_mailing ($name) {
   global $wpdb;
-   $table_name = $wpdb->prefix . "mailing"; 
-  $sql = "CREATE TABLE if not exists $table_name (
-    id mediumint(9) NOT NULL AUTO_INCREMENT,
-    email VARCHAR(55) DEFAULT '' NOT NULL,
-    UNIQUE KEY id (id)
-  );";
+   $table_name = $wpdb->prefix . $name; 
+  $sql = "CREATE TABLE $table_name (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;";
+
   require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
   dbDelta( $sql );
+  return $table_name;
 }
+function wp_mailing($table_sufix){
+  $table_name = create_table_mailing($table_sufix);
+  if (isset($_POST['email']) && !empty($_POST['email'])) {
+    global $wpdb;
+    if (validEmail($_POST['email'])) {
+      $data['email'] = $_POST['email'];
+      if (!verify_mail($_POST['email'], $table_name)) {
+        $result = $wpdb->insert($table_name, $wpdb->escape($data));
+        $mailingSuccess = "Cadastro efetuado com sucesso!";
+        echo '<div class="message"><p class="mailing-message success"><strong>'. $mailingSuccess .'</strong></p></div>';
+      }else{
+        $mailingError = 'Email já cadastrado!';
+        echo '<div class="message"><p class="mailing-message error"><strong>'. $mailingError .'</strong></p></div>';
+      }
+    }else{
+      $mailingError = "Email inválido!";
+      echo '<div class="message"><p class="mailing-message error"><strong>'. $mailingError .'</strong></p></div>';
+    }
+  } 
+}
+
 function validEmail($email=null) {
   if( preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)) {
       return true;
@@ -225,10 +251,9 @@ function validEmail($email=null) {
   }
 }
 
-
-function verify_mail($mail){
+function verify_mail($mail, $table_name){
     global $wpdb;   
-    $myrows = $wpdb->get_results("SELECT * FROM mailing WHERE email='" . $mail . "'", 'ARRAY_N');
+    $myrows = $wpdb->get_results("SELECT * FROM ".$table_name." WHERE email='" . $mail . "'", 'ARRAY_N');
     if (count($myrows) < 1) {
       return false;
     }else{
