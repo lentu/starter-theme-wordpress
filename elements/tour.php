@@ -59,7 +59,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
 	<br>
 	<br>
 	<br>
-	<div>Nth-child (pseudo classes com fórmulas), entenda aqui: <a href="http://css-tricks.com/how-nth-child-works/" target="_blank">http://css-tricks.com/how-nth-child-works/< target="_blank"/a></div>
+	<div>Nth-child (pseudo classes com fórmulas), entenda aqui: <a href="http://css-tricks.com/how-nth-child-works/" target="_blank">http://css-tricks.com/how-nth-child-works/</a></div>
 	<div class="square"></div>
 	<div class="square"></div>
 	<div class="square"></div>
@@ -85,6 +85,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
 
 
 	<div class="mailing">]
+		<h2>Exemplo de Mailing</h2>
 		<div class="message">
 			<?php if (isset($mailingError)): ?>
 				<p class="error" style="color: red;"><strong><?php echo $mailingError; ?></strong></p>
