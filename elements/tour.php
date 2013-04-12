@@ -1,3 +1,20 @@
+<?php 
+create_table_mailing();
+if (isset($_POST['email']) && !empty($_POST['email'])) {
+    global $wpdb;
+    if (validEmail($_POST['email'])) {
+      $data['email'] = $_POST['email'];
+      if (!verify_mail($_POST['email'])) {
+        $result = $wpdb->insert('mailing', $wpdb->escape($data));
+        $mailingSuccess = "Cadastro efetuado com sucesso!";
+      }else{
+        $mailingError = 'Email já cadastrado!';
+      }
+    }else{
+       $mailingError = "Email inválido!";
+    }
+  } 
+?>
 <!-- exemplos de compass -->
 <div id="tour">
 	<div class="compass-example">Abra o <strong>_tour.sass</strong> e compare</div>
@@ -65,4 +82,20 @@
 	<div class="square"></div>
 	<div class="square"></div>
 	<div class="square"></div>
+
+
+	<div class="mailing">]
+		<div class="message">
+			<?php if (isset($mailingError)): ?>
+				<p class="error" style="color: red;"><strong><?php echo $mailingError; ?></strong></p>
+			<?php endif; ?>
+			<?php if (isset($mailingSuccess)): ?>
+				<p class="success" style="color: green;"><strong><?php echo $mailingSuccess; ?></strong></p>
+			<?php endif; ?>
+		</div>
+		<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
+			<input type="text" name="email" class="email" placeholder="Receba novidades">
+			<input class="submit" type="submit" value="OK">
+		</form>
+	</div>
 </div>

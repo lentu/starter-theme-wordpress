@@ -113,14 +113,6 @@ function debug($value=''){
   echo '</pre>';
 }
 
-function validEmail($email=null) {
-  if( preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)) {
-      return true;
-  } else {
-      return false;
-  }
-}
-
 function truncate($text, $length, $ending = '...', $exact = true) {
     if (strlen($text) <= $length) {
         return $text;
@@ -214,6 +206,36 @@ function discover_section(){
 if (!is_admin()) {
   add_filter('show_admin_bar', '__return_false');
 }
+function create_table_mailing () {
+  global $wpdb;
+   $table_name = $wpdb->prefix . "mailing"; 
+  $sql = "CREATE TABLE if not exists $table_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    email VARCHAR(55) DEFAULT '' NOT NULL,
+    UNIQUE KEY id (id)
+  );";
+  require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+  dbDelta( $sql );
+}
+function validEmail($email=null) {
+  if( preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)) {
+      return true;
+  } else {
+      return false;
+  }
+}
+
+
+function verify_mail($mail){
+    global $wpdb;   
+    $myrows = $wpdb->get_results("SELECT * FROM mailing WHERE email='" . $mail . "'", 'ARRAY_N');
+    if (count($myrows) < 1) {
+      return false;
+    }else{
+      return true;
+    };
+}
+
 
 function get_scripts(){
   #pega automaticamente o js da view
