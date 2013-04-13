@@ -137,6 +137,33 @@ a img.aligncenter {
 .upcase {
   text-transform: uppercase; }
 
+.wpcf7-response-output {
+  display: block;
+  margin: 70px 0 0;
+  overflow: hidden;
+  border: solid 2px #e1dede;
+  background: gray;
+  color: black; }
+
+.wpcf7-validation-errors {
+  border-color: red;
+  background: red;
+  color: white; }
+
+.wpcf7-display-none {
+  display: none; }
+
+.mailing-message {
+  font-size: 30px;
+  padding: 20px 100px;
+  margin: 0;
+  height: 0px;
+  line-height: 62px;
+  background: white;
+  color: green; }
+  .mailing-message.error {
+    color: red; }
+
 .icones-sprite, .icones-mkt-virtual, .icones-search, .icones-twitter_hover {
   background: url('../images/../images/icones-sfd352edd95.png') no-repeat; }
 
@@ -215,7 +242,8 @@ i {
 
 #tour {
   padding: 20px;
-  background: gray; }
+  color: black;
+  background: #cccccc; }
   #tour div.compass-example {
     font-size: 30px;
     line-height: 36px;

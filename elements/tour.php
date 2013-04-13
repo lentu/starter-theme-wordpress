@@ -65,15 +65,8 @@
 	<div class="square"></div>
 	<div class="square"></div>
 	<div class="square"></div>
-
-	<!-- esta na functions.php essa função
-	automaticamente é criada uma tabela (se não existir) com o prefixo definido no wp-config.php e o parâmetro passado como string
-	já existe validação de email e de duplicidade na functions também
-	mensagens de erro printadas em modal, adapte se precisar
-	 -->
-	<?php wp_mailing('mailing'); ?>
-
-	<div class="mailing">]
+	
+	<div class="mailing">
 		<h2>Exemplo de Mailing</h2>
 		<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
 			<input type="text" name="email" class="email" placeholder="Receba novidades">

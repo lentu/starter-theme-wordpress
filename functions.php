@@ -240,6 +240,11 @@ function wp_mailing($table_sufix){
       $mailingError = "Email inválido!";
       echo '<div class="message"><p class="mailing-message error"><strong>'. $mailingError .'</strong></p></div>';
     }
+  }else{
+    if ($_POST['email'] == '') {
+      $mailingError = "E-mail não pode ser vazio!";
+      echo '<div class="message"><p class="mailing-message error"><strong>'. $mailingError .'</strong></p></div>';      
+    }
   } 
 }
 
