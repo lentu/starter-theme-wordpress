@@ -211,8 +211,8 @@ if (!is_admin()) {
 
 function create_table_mailing ($name) {
   global $wpdb;
-   $table_name = $wpdb->prefix . $name; 
-  $sql = "CREATE TABLE $table_name (
+  $table_name = $wpdb->prefix . $name; 
+  $sql = "CREATE TABLE IF NOT EXISTS $table_name(
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)

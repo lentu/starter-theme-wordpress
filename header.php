@@ -32,6 +32,10 @@
     } ?>  
 <?php endif; ?>
 
+<?php if ($_SERVER['SERVER_PORT'] == '8888' || WP_DEBUG): ?>
+  <?php #só includado em produção, permite usar cores no console.log e deixar compatível com todos os browsers, inclusive IE ?>
+  <script src="<?php echo get_template_directory_uri(); ?>/js/log.js"></script>
+<?php endif ?>
 
 <script>
   var _gaq=[['_setAccount','UA-XXXXXX-X'],['_trackPageview']];

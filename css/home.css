@@ -196,6 +196,9 @@ body {
   font: normal 14px "Dosis", sans-serif;
   color: #404040; }
 
+h1, h2, h3, h4, h5, h6, p, span, strong, a, small, div, section, body {
+  -webkit-font-smoothing: antialiased; }
+
 p {
   margin: 5px 0 10px; }
 
