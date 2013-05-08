@@ -1,111 +1,119 @@
 <?php
-/**
-* Define a constant path to our single template folder
-*/
-
-// This theme styles the visual editor with editor-style.css to match the theme style.
-  add_editor_style();
-
-  // This theme uses post thumbnails
-  add_theme_support( 'post-thumbnails' );
-
-  if ( function_exists( 'add_image_size' ) ) add_theme_support( 'post-thumbnails' );
-  if ( function_exists( 'add_image_size' ) ) {  
-    add_image_size( 'post', 140, 140, true );
-    add_image_size( 'equipe', 221, 297, true );
-    add_image_size( 'thumb-video', 168, 116, true );
-    add_image_size( 'publicacoes', 166, 800, false );
-    }
-    
-function rss_post_thumbnail($content) {
-    global $post;
-    if(has_post_thumbnail($post->ID)) {
-    $content = '<p>' . get_the_post_thumbnail($post->ID) .
-    '</p>' . get_the_content();
-    }
-    return $content;
+add_editor_style();
+add_theme_support( 'post-thumbnails' );
+if ( function_exists( 'add_image_size' ) ) add_theme_support( 'post-thumbnails' );
+if ( function_exists( 'add_image_size' ) ) {  
+  add_image_size( 'post', 140, 140, true );
+  add_image_size( 'equipe', 221, 297, true );
+  add_image_size( 'thumb-video', 168, 116, true );
+  add_image_size( 'publicacoes', 166, 800, false );
 }
-/**
-* Filter the single_template with our custom function
-*/
+
+function catch_that_image() {
+  global $post, $posts;
+  $first_img = '';
+  ob_start();
+  ob_end_clean();
+  $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+  $first_img = $matches[1][0];
+
+  if(empty($first_img)) {
+    return null;
+  }
+  return $first_img;
+}    
+
+function rss_post_thumbnail($content) {
+  global $post;
+  if(has_post_thumbnail($post->ID)) {
+  $content = '<p>' . get_the_post_thumbnail($post->ID) .
+  '</p>' . get_the_content();
+  }
+  return $content;
+}
+
 remove_action('wp_head', 'wp_generator');
-/**
-* Single template function which will choose our template
-*/
+
+
+function new_excerpt_more( $more ) {
+  return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">... Leia mais.</a>';
+}
+add_filter( 'excerpt_more', 'new_excerpt_more' );
+
+
+function debug_query(){
+  global $wp_query; 
+  debug($wp_query);
+}
 
 function content_navigation( $nav_id ) {
-    global $wp_query;
+  global $wp_query;
 
-    if ( function_exists( 'wp_paginate' ) ) {
-        wp_paginate();
-    }
-    else {
-        if ( $wp_query->max_num_pages > 1 ) : ?>
-            <nav id="<?php echo $nav_id; ?>">
-                <h3 class="assistive-text"><?php _e( 'Post navigation', 'twentyeleven' ); ?></h3>
-                <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentyeleven' ) ); ?></div>
-                <div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?></div>
-            </nav><!-- #nav-above -->
-        <?php endif;
-    }
+  if ( function_exists( 'wp_paginate' ) ) {
+      wp_paginate();
+  }
+  else {
+      if ( $wp_query->max_num_pages > 1 ) : ?>
+          <nav id="<?php echo $nav_id; ?>">
+              <h3 class="assistive-text"><?php _e( 'Post navigation', 'twentyeleven' ); ?></h3>
+              <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentyeleven' ) ); ?></div>
+              <div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?></div>
+          </nav><!-- #nav-above -->
+      <?php endif;
+  }
 }
 
-function detect_mobile()
-{
-    $_SERVER['ALL_HTTP'] = isset($_SERVER['ALL_HTTP']) ? $_SERVER['ALL_HTTP'] : '';
- 
-    $mobile_browser = '0';
- 
-    if(preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone|iphone|ipad|ipod|android|xoom)/i', strtolower($_SERVER['HTTP_USER_AGENT'])))
-        $mobile_browser++;
- 
-    if((isset($_SERVER['HTTP_ACCEPT'])) and (strpos(strtolower($_SERVER['HTTP_ACCEPT']),'application/vnd.wap.xhtml+xml') !== false))
-        $mobile_browser++;
- 
-    if(isset($_SERVER['HTTP_X_WAP_PROFILE']))
-        $mobile_browser++;
- 
-    if(isset($_SERVER['HTTP_PROFILE']))
-        $mobile_browser++;
- 
-    $mobile_ua = strtolower(substr($_SERVER['HTTP_USER_AGENT'],0,4));
-    $mobile_agents = array(
-                        'w3c ','acs-','alav','alca','amoi','audi','avan','benq','bird','blac',
-                        'blaz','brew','cell','cldc','cmd-','dang','doco','eric','hipt','inno',
-                        'ipaq','java','jigs','kddi','keji','leno','lg-c','lg-d','lg-g','lge-',
-                        'maui','maxo','midp','mits','mmef','mobi','mot-','moto','mwbp','nec-',
-                        'newt','noki','oper','palm','pana','pant','phil','play','port','prox',
-                        'qwap','sage','sams','sany','sch-','sec-','send','seri','sgh-','shar',
-                        'sie-','siem','smal','smar','sony','sph-','symb','t-mo','teli','tim-',
-                        'tosh','tsm-','upg1','upsi','vk-v','voda','wap-','wapa','wapi','wapp',
-                        'wapr','webc','winw','winw','xda','xda-'
-                        );
- 
-    if(in_array($mobile_ua, $mobile_agents))
-        $mobile_browser++;
- 
-    if(strpos(strtolower($_SERVER['ALL_HTTP']), 'operamini') !== false)
-        $mobile_browser++;
- 
-    // Pre-final check to reset everything if the user is on Windows
-    if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'windows') !== false)
-        $mobile_browser=0;
- 
-    // But WP7 is also Windows, with a slightly different characteristic
-    if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'windows phone') !== false)
-        $mobile_browser++;
- 
-    if($mobile_browser>0)
-        return true;
-    else
-        return false;
+//retorna todos os vídeos de uma playlist
+function videos_by_playlists($canal = 'google', $playlist = 'PLVHxJsRp_lMCwRDfUC_1xH_UKJO_acCnl'){
+    $sxml = simplexml_load_file('http://gdata.youtube.com/feeds/api/playlists/' . $playlist);
+    $playlist = explode('=', $sxml->link['href']);
+    $playlist = $playlist[1];
+    
+
+    $cont = json_decode(file_get_contents('http://gdata.youtube.com/feeds/api/playlists/' . $playlist . '/?v=2&alt=json&feature=plcp'));
+
+    $feed = $cont->feed->entry; 
+
+    $videos = null;
+    if(count($feed)){
+      foreach($feed as $item){
+        $videos[] = array(
+          'id' => $item->{'media$group'}->{'yt$videoid'}->{'$t'},
+          'title' => ($item->title->{'$t'}),
+          'description' => $item->{'media$group'}->{'media$description'}->{'$t'},
+          'url' => $item->content->src,
+          'thumbnail' => $item->{'media$group'}->{'media$thumbnail'}[1]->url
+        );
+      }
+    } 
+  return $videos;
 }
+
+
+function crop($image_name, $image_path, $size){
+  /* usage:
+  * <img src="<?php echo crop('abc.jpg', 'images/em-acao/assessoria-estrategica-para-organizacoes-e-governos/', array('width'=>10, 'height'=>20)); ?>" alt="your title">
+  * echo crop('abc.jpg', 'images/em-acao/assessoria-estrategica-para-organizacoes-e-governos/', array('width'=>200, 'height'=>200)); 
+  */ 
+  $arr = explode('.', $image_name);
+  $image_name = $arr[0];
+  $extension = '.' . $arr[1];
+  $image = wp_get_image_editor( get_bloginfo('template_directory') . '/' . $image_path . $image_name . $extension ); 
+  if (!file_exists(get_dir_path() . $image_path . md5($image_name) . $extension) && !is_wp_error( $image )) {
+    $image->resize($size['width'], $size['height'], true );
+    $image->set_quality( 85 );
+    $image->save( get_dir_path() . $image_path . md5($image_name) . $extension );
+  }
+  return get_bloginfo('template_directory') . '/' . $image_path . md5($image_name) .  $extension;
+}
+
+
 
 function get_permalink_by_name($post_name) {
-     global $post;
-     global $wpdb;
-     $id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '".$post_name."'");
-     return get_permalink($id);
+  global $post;
+  global $wpdb;
+  $id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '".$post_name."'");
+  return get_permalink($id);
 }
 function debug($value=''){
   echo '<pre style="background:yellow;">';
@@ -114,24 +122,23 @@ function debug($value=''){
 }
 
 function truncate($text, $length, $ending = '...', $exact = true) {
-    if (strlen($text) <= $length) {
-        return $text;
-    } else {
-        $truncate = substr($text, 0, $length - strlen($ending));
-        if (!$exact) {
-             $spacepos = strrpos($truncate, ' ');
-             if (isset($spacepos)) {
-                  return substr($truncate, 0, $spacepos) . $ending;
-             }
-        }    
-        return $truncate . $ending;
+  if (strlen($text) <= $length) {
+    return $text;
+  } else {
+    $truncate = substr($text, 0, $length - strlen($ending));
+    if (!$exact) {
+      $spacepos = strrpos($truncate, ' ');
+    if (isset($spacepos)) {
+      return substr($truncate, 0, $spacepos) . $ending;
     }
+    }    
+    return $truncate . $ending;
+  }
 }
 
 
 function wordpressapi_comments($comment, $args, $depth) {
  $GLOBALS['comment'] = $comment; ?>
-
   <li <?php comment_class(); ?> class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-39">
     <div id="div-comment-39" class="comment-body">
       <div class="comment-top">
@@ -149,33 +156,33 @@ function wordpressapi_comments($comment, $args, $depth) {
 <?php }
 
 
-function videos($canal = 'google')
-{
-    $feedURL = 'http://gdata.youtube.com/feeds/api/users/' . $canal . '/uploads';
-    $sxml = simplexml_load_file($feedURL);
-    $videos = null;
-    foreach ($sxml->entry as $entry) :
-        $video_id = end(explode('/', $entry->id));
-        
-        $media = $entry->children('http://search.yahoo.com/mrss/');
-        // get title
-        
-        $attrs = $media->group->player->attributes();
-        $watch = $attrs['url'];
-        // get video thumbnail
-        $attrs = $media->group->thumbnail[0]->attributes();
-        $thumbnail = $attrs['url'];
-        
-        $videos[] = array(
-            'id' => $video_id,
-            'title' => $media->group->title,
-            'description' => $media->group->description,
-            'url' => $watch,
-            'thumbnail' => $thumbnail
-        );
-    endforeach;
-    return $videos;
+function videos($canal = 'google'){
+  $feedURL = 'http://gdata.youtube.com/feeds/api/users/' . $canal . '/uploads';
+  $sxml = simplexml_load_file($feedURL);
+  $videos = null;
+  foreach ($sxml->entry as $entry) :
+      $video_id = end(explode('/', $entry->id));
+      
+      $media = $entry->children('http://search.yahoo.com/mrss/');
+      // get title
+      
+      $attrs = $media->group->player->attributes();
+      $watch = $attrs['url'];
+      // get video thumbnail
+      $attrs = $media->group->thumbnail[0]->attributes();
+      $thumbnail = $attrs['url'];
+      
+      $videos[] = array(
+          'id' => $video_id,
+          'title' => $media->group->title,
+          'description' => $media->group->description,
+          'url' => $watch,
+          'thumbnail' => $thumbnail
+      );
+  endforeach;
+  return $videos;
 }
+
 function get_dir_path(){
   return dirname(__FILE__).'/';
 }
