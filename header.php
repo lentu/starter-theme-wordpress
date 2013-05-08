@@ -62,11 +62,5 @@ s.parentNode.insertBefore(ga, s);
 </head>
 <body <?php body_class(); ?>>
 	
-  <!-- esta na functions.php essa função
-  automaticamente é criada uma tabela (se não existir) com o prefixo definido no wp-config.php e o parâmetro passado como string
-  já existe validação de email e de duplicidade na functions também
-  mensagens de erro printadas em modal, adapte se precisar
-   -->
-  <?php wp_mailing('mailing'); ?>
   
 <div id="root">
