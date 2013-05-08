@@ -15,11 +15,8 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/polyfills/selectivizr-min.js"></script>
 <![endif]-->
 
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
-<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,800' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/css/formvalidation.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/js/vendors/fancybox/jquery.fancybox.css" />
-
 
 <?php get_stylesheets(); ?>
 

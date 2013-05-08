@@ -225,9 +225,9 @@ if (!is_admin()) {
 
 
 
-function create_table_mailing ($name) {
+function create_table_mailing ($table_sufix) {
   global $wpdb;
-  $table_name = $wpdb->prefix . $name; 
+  $table_name = $wpdb->prefix . $table_sufix; 
   $sql = "CREATE TABLE IF NOT EXISTS $table_name(
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,

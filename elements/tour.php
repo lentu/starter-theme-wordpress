@@ -41,7 +41,21 @@
 	</ul>
 	<br>
 	<br>
+	<div class="mailing">
+		<h2>Exemplo de Mailing com validação HTML5 no client e também no server</h2>
+		<p>Placeholder com polyfill</p>
+		<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
+			<input required title="Preencha um e-mail válido" type="text" name="email" class="email" placeholder="Receba novidades">
+			<input class="submit" type="submit" value="OK">
+		</form>
+	</div>
 	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+
 	<div>Nth-child (pseudo classes com fórmulas), entenda aqui: <a href="http://css-tricks.com/how-nth-child-works/" target="_blank">http://css-tricks.com/how-nth-child-works/</a></div>
 	<div class="square"></div>
 	<div class="square"></div>
@@ -66,11 +80,4 @@
 	<div class="square"></div>
 	<div class="square"></div>
 	
-	<div class="mailing">
-		<h2>Exemplo de Mailing</h2>
-		<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
-			<input type="text" name="email" class="email" placeholder="Receba novidades">
-			<input class="submit" type="submit" value="OK">
-		</form>
-	</div>
 </div>

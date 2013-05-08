@@ -5,6 +5,7 @@
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/vendors/jquery.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/vendors/fancybox/jquery.fancybox.pack.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/polyfills/formvalidation.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/default.js"></script>
 
 <?php global $js; ?>
