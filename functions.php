@@ -63,9 +63,18 @@ function content_navigation( $nav_id ) {
   }
 }
 
+
+function simplexml_load_file_curl($url) {
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  $xml = simplexml_load_string(curl_exec($ch));
+  return $xml;
+}
+
+
 //retorna todos os vídeos de uma playlist
 function videos_by_playlists($canal = 'google', $playlist = 'PLVHxJsRp_lMCwRDfUC_1xH_UKJO_acCnl'){
-    $sxml = simplexml_load_file('http://gdata.youtube.com/feeds/api/playlists/' . $playlist);
+    $sxml = simplexml_load_file_curl('http://gdata.youtube.com/feeds/api/playlists/' . $playlist);
     $playlist = explode('=', $sxml->link['href']);
     $playlist = $playlist[1];
     
@@ -158,7 +167,7 @@ function wordpressapi_comments($comment, $args, $depth) {
 
 function videos($canal = 'google'){
   $feedURL = 'http://gdata.youtube.com/feeds/api/users/' . $canal . '/uploads';
-  $sxml = simplexml_load_file($feedURL);
+  $sxml = simplexml_load_file_curl($feedURL);
   $videos = null;
   foreach ($sxml->entry as $entry) :
       $video_id = end(explode('/', $entry->id));
