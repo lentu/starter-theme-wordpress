@@ -3,7 +3,7 @@
 	var ROOT_URL = "<?php bloginfo('url'); ?>/index.php/";
 </script>
 
-<script src="<?php echo get_template_directory_uri(); ?>/js/vendors/jquery.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/vendors/jquery-1.9.1.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/vendors/fancybox/jquery.fancybox.pack.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/polyfills/formvalidation.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/default.js"></script>

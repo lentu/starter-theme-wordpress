@@ -24,8 +24,9 @@ Main =
 			Main.trackEvent(category, action, label)
 
 	trackEvent : (cat,act,lab) ->
-		_gas.push(['_trackEvent', cat, act, lab])
-
+		ga('send', 'event', cat, act, lab)
+	trackPageView : (url) ->
+		ga('send', 'pageview', url)
 	forms : ->
 		Modernizr.load({
 			test: Modernizr.placeholder,

@@ -34,29 +34,16 @@
   <script src="<?php echo get_template_directory_uri(); ?>/js/log.js"></script>
 <?php endif ?>
 
-<script type="text/javascript">
-var _gas = _gas || [];
-_gas.push(['_setAccount', 'UA-XXXXXX-X']); 
-_gas.push(['_setDomainName', 'yourdomain']); 
-_gas.push(['_trackPageview']);
-_gas.push(['_gasTrackForms']);
-_gas.push(['_gasTrackOutboundLinks']);
-_gas.push(['_gasTrackDownloads']);
-_gas.push(['_gasTrackYoutube', {force: true}]);
-_gas.push(['_gasTrackVimeo', {force: true}]);
-_gas.push(['_gasTrackMailto']);
 
-(function() {
-var ga = document.createElement('script');
-ga.type = 'text/javascript';
-ga.async = true;
-ga.src = "<?php echo get_template_directory_uri(); ?>/js/vendors/gas.min.js";
-var s = document.getElementsByTagName('script')[0];
-s.parentNode.insertBefore(ga, s);
-})();
-</script> 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-
+  ga('create', 'UA-XXXXXXXX-X', 'dominio.com.br');
+  ga('send', 'pageview');
+</script>
 
 <?php wp_head(); ?>
 </head>
