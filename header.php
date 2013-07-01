@@ -13,6 +13,7 @@
 <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> Feed" href="<?php site_url(); ?>/feed/">
 <meta name="viewport" content="initial-scale=1">
+<meta name="author" content="Mkt Virtual :: Agência de internet e marketing interativo">
 
 <!--[if lt IE 9]>
   <script src="<?php echo get_template_directory_uri(); ?>/js/polyfills/html5.js"></script>
