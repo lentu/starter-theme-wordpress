@@ -9,6 +9,15 @@ if ( function_exists( 'add_image_size' ) ) {
   add_image_size( 'publicacoes', 166, 800, false );
 }
 
+// Enable qTranslate for WordPress SEO
+function qtranslate_filter($text){
+  return __($text);
+}
+
+add_filter('wpseo_title', 'qtranslate_filter', 10, 1);
+add_filter('wpseo_metadesc', 'qtranslate_filter', 10, 1);
+add_filter('wpseo_metakey', 'qtranslate_filter', 10, 1);
+
 function catch_that_image() {
   global $post, $posts;
   $first_img = '';
