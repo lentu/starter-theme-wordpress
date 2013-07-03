@@ -17,6 +17,7 @@ function qtranslate_filter($text){
 add_filter('wpseo_title', 'qtranslate_filter', 10, 1);
 add_filter('wpseo_metadesc', 'qtranslate_filter', 10, 1);
 add_filter('wpseo_metakey', 'qtranslate_filter', 10, 1);
+add_filter('wpseo_opengraph_title', 'qtranslate_filter', 10, 1);
 
 function catch_that_image() {
   global $post, $posts;
